@@ -11,13 +11,12 @@ from flask.logging import create_logger
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
 # TODO: Add any logging levels and handlers with app.logger
-# DONE (Note: Instructor's original app.logger code not pylint compliant)
-LOG = create_logger(app)
-LOG.setLevel(logging.INFO)
-streamHandler = logging.StreamHandler()
-streamHandler.setLevel(logging.INFO)
-LOG.addHandler(streamHandler)
+app.logger.setLevel(logging.INFO)
+stream_handler = logging.StreamHandler()
+stream_handler.setLevel(logging.INFO)
+app.logger.addHandler(stream_handler)
 
 Session(app)
 db = SQLAlchemy(app)
